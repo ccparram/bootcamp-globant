@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class YoutubeHomePage {
 	
 	@FindBy(id="masthead-search-term")
-	private WebElement searchBox;
+	public WebElement searchBox;
 	
 	@FindBy(id="search-btn")
-	private WebElement searchButton;
+	public WebElement searchButton;
 	
 	public WebDriver driver;
 	

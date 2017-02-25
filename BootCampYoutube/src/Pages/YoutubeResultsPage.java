@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 public class YoutubeResultsPage {
 	
 	@FindBy(xpath=".//*[@id='results']/ol/li[2]/ol/li/div/div/div[2]/h3/a")
-	private WebElement videoTwo;
+	public WebElement videoTwo;
 
 	private WebDriver driver;
 	

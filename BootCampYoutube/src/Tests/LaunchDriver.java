@@ -5,6 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Chains.SearchsChain;
 import Pages.YoutubeHomePage;
 import Pages.YoutubeResultsPage;
 
@@ -13,12 +14,14 @@ public class LaunchDriver {
 	private WebDriver driver;
 	private YoutubeHomePage youtubeHomePage;
 	private YoutubeResultsPage youtubeResultsPage;
+	private SearchsChain searchsChain;
 	
 	public LaunchDriver(){
 		System.setProperty("webdriver.gecko.driver", "../drivers/geckodriver-linux");
 		driver = new FirefoxDriver();
 		youtubeHomePage = new YoutubeHomePage(driver);
 		youtubeResultsPage = new YoutubeResultsPage(driver);
+		searchsChain = new SearchsChain(driver);
 	}
 	
 	// Using YoutubeHomePage and YoutubeResultsPage POM
@@ -44,10 +47,11 @@ public class LaunchDriver {
 		youtubeHomePage.setSearchVideoC("Rodolfo Aicardi");
 	}
 	
+	// Using SearchsChain
 	@Test
 	public void launchDriverD() throws InterruptedException{
 		driver.get("https://youtube.com");
-		youtubeHomePage = youtubeHomePage.setSearchVideoD("Rodolfo Aicardi").clickOnSearchD();
+		searchsChain.searchAndSelectVideo("rodolfo aicardi", "adonay");
 	}
 
 }
