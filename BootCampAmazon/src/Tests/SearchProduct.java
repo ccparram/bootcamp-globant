@@ -15,7 +15,7 @@ public class SearchProduct {
 	private String PRODUCT = "Resident Evil 7 playstation 4";
 	
 	public SearchProduct(){
-		System.setProperty("webdriver.gecko.driver", "../drivers/geckodriver-linux");
+		System.setProperty("webdriver.gecko.driver", "../drivers/chromedriver-linux");
 		driver = new FirefoxDriver();
 		searchChain = new SearchChain(driver);
 	}
