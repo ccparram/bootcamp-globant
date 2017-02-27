@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 public class SearchTicket {
 	
@@ -26,7 +27,9 @@ public class SearchTicket {
 	}
 	
 	@Test
-	public void searchTicket() {
-		searchTicket.searchTicket("Medellín", "Cancún", "15/03/2017", "25/03/2017", "5");
+	@Parameters({"originCity", "destinationCity", "departureDate", "returnDate", "passengersNumber"})
+	public void searchTicket(String originCity, String destinationCity, String departureDate,
+			String returnDate, String passengersNumber) {
+		searchTicket.searchTicket(originCity, destinationCity, departureDate, returnDate, passengersNumber);
 	}
 }

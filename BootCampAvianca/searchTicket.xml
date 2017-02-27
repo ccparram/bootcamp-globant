@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" thread-count="3" >
+<test name="testSearchTickets">
+
+	<parameter name="originCity" value="Medellín" />
+	<parameter name="destinationCity" value="Cancún" />
+	<parameter name="departureDate" value="15/05/2017" />
+	<parameter name="returnDate" value="25/06/2017" />
+	<parameter name="passengersNumber" value="5" />
+	
+	<classes>
+		<class name="Tests.SearchTicket"></class>
+	</classes>
+
+</test>
+</suite>
