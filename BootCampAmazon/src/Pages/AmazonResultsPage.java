@@ -1,5 +1,7 @@
 package Pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +14,10 @@ public class AmazonResultsPage {
 	public WebElement sortSelect;
 	
 	@FindBy (xpath="//*[starts-with(@id, 'result_')]/div/div/div/div[2]/div[2]/div[1]/a/h2")
-	public WebElement[] results;
+	public List<WebElement> results;
+	
+	@FindBy (id="pagnNextString")
+	public WebElement nextPage;
 	
 	public WebDriver driver;
 	
@@ -24,5 +29,14 @@ public class AmazonResultsPage {
 	public void sortResultsPriceLowToHigh(){
 		Select sortDropdown = new Select(sortSelect);
 		sortDropdown.selectByValue("price-asc-rank");
+	}
+	
+	public WebElement getProductTitle(String keyword){
+		for (WebElement webElement : results) {
+			System.out.println(webElement.getText());
+			if(webElement.getText().contains(keyword))
+				return webElement;
+		}
+		return null;
 	}
 }

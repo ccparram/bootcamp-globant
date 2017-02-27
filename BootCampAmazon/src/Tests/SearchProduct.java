@@ -13,7 +13,7 @@ public class SearchProduct {
 	private WebDriver driver;
 	private SearchChain searchChain;
 	
-	private String PRODUCT = "Resident Evil 7";
+	private String PRODUCT_NAME = "Resident Evil 7";
 	
 	public SearchProduct(){
 		System.setProperty("webdriver.gecko.driver", "../drivers/chromedriver-linux");
@@ -28,11 +28,8 @@ public class SearchProduct {
 	
 	@Test
 	public void searchProduct() throws InterruptedException {
-		searchChain.searchProduct(PRODUCT);
+		searchChain.searchProduct(PRODUCT_NAME);
 		Thread.sleep(3000);
-		
-		String local = "xfsfs Resident Evil 7 playstation 4 sfsfsf";
-		String keyword = "Resident Evil 7 playstation 4";
-		Assert.assertTrue(local.contains(keyword));
+		searchChain.chooseProduct(PRODUCT_NAME);
 	}
 }
