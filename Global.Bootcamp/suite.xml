@@ -3,10 +3,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="TestSuite" thread-count="3" >
-	<parameter name="browser" value="FIREFOX" />
-	<test name="testGuru">
+	<test name="LaunchDriver">
+		<parameter name="browser" value="FIREFOX" />
+		<parameter name="url" value="https://google.com" />
 		<classes>
-			<class name="Tests.SimpleLauncher"></class>
+			<class name="tests.SimpleLauncher"></class>
 		</classes>
 	</test>
 </suite>
