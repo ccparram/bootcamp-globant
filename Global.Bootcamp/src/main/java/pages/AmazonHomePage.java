@@ -11,30 +11,31 @@ import commons.utils.MyWait;
 public class AmazonHomePage extends BasePage {
 	
 	@FindBy (id="twotabsearchtextbox")
-	public WebElement searchBox;
+	private WebElement searchBox;
 	
 	@FindBy (xpath=".//*[@id='nav-search']/form/div[2]/div/input")
-	public WebElement searchButton;
+	private WebElement searchButton;
 	
 	@FindBy (xpath=".//*[@id='nav-link-shopall']/span[2]")
-	public WebElement menuDepartments;
+	private WebElement menuDepartments;
 	
 	@FindBy (xpath=".//*[@id='nav-flyout-shopAll']/div[2]/span[10]/span")
-	public WebElement subMenuMovieMusicGames;
+	private WebElement subMenuMovieMusicGames;
 	
 	@FindBy (xpath=".//*[@id='nav-flyout-shopAll']/div[3]/div[10]/div/a[9]/span")
-	public WebElement subMenuGames;
+	private WebElement subMenuGames;
 	
 	@FindBy (xpath=".//*[@id='nav-subnav']/a[2]/span[1]")
-	public WebElement psp4CategoryButton;
+	private WebElement psp4CategoryButton;
 	
 	@FindBy (css="#searchDropdownBox option[selected='selected']")
-	public WebElement optionSelected;
+	private WebElement optionSelected;
 	
 	
 	public AmazonHomePage(WebDriver driver) {
 		super(driver);
 	}
+	
 	
 	public void setPSP4Category() throws InterruptedException{
 		Actions actions = new Actions(driver);
@@ -42,14 +43,19 @@ public class AmazonHomePage extends BasePage {
 		actions.moveToElement(subMenuMovieMusicGames);
 		actions.moveToElement(subMenuGames);	
 		actions.click().build().perform();
-//		FIXME
-//		MyWait.elementToBeClickableAndClick(psp4CategoryButton);
-		psp4CategoryButton.click();
+		myWait.elementToBeClickableAndClick(psp4CategoryButton);
+		myWait.elementToBeVisible(optionSelected);
 	}
+	
 	
 	public void searchProduct(String product){
 		searchBox.sendKeys(product);
 		searchButton.click();
-}
+	}
+	
+
+	public String getOptionSelectedText() {
+		return optionSelected.getText();
+	}
 	
 }

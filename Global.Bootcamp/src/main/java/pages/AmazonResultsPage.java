@@ -4,47 +4,44 @@ import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import commons.BasePage;
-import commons.utils.MyWait;
 
 public class AmazonResultsPage extends BasePage {
 	
 	@FindBy (id="sort")
-	public WebElement sortSelect;
+	private WebElement sortSelect;
 	
 	@FindBy (xpath="//*[starts-with(@id, 'result_')]/div/div/div/div[2]/div[2]/div[1]/a/h2")
-	public List<WebElement> results;
+	private List<WebElement> results;
+	
+	@FindBy (xpath = "//*[starts-with(@id, 'result_')]/div/div/div/div[2]/div[3]/div[1]/div[2]/a/span/span/span")
+	private List<WebElement> resultPrices;
 	
 	@FindBy (id="pagnNextString")
-	public WebElement nextPage;
-	
+	private WebElement nextPage;
+
 	
 	public AmazonResultsPage(WebDriver driver) {
 		super(driver);
 	}
 	
+	
 	public void sortResultsPriceLowToHigh(){
 		Select sortDropdown = new Select(sortSelect);
 		sortDropdown.selectByValue("price-asc-rank");
+		myWait.elementToBeClickable(sortSelect);
 	}
 	
+	
 	public void chooseProduct(String productName) {
-		WebElement choosedProduct = getProductTitle(productName);
+		WebElement choosedProduct = getInResultsProductTitle(productName);
 		while(choosedProduct == null){
-			myWait.elementToBeClickableAndClick(nextPage);
 			if(nextPage.isEnabled()){
-				nextPage.click();
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				choosedProduct = getProductTitle(productName);
+				myWait.elementToBeClickableAndClick(nextPage);
+				choosedProduct = getInResultsProductTitle(productName);
 			}
 			else{
 				break;
@@ -53,13 +50,27 @@ public class AmazonResultsPage extends BasePage {
 		choosedProduct.click();
 	}
 	
-	private WebElement getProductTitle(String keyword){
+	
+	private WebElement getInResultsProductTitle(String keyword){
 		for (WebElement webElement : results) {
-			myWait.elementToBeVisible(webElement);
 			if(webElement.getText().contains(keyword))
 				return webElement;
 		}
 		return null;
 	}
 	
+	
+	public boolean isResultSortedPriceLowToHigh(){
+		
+		if (resultPrices.size() >= 2){
+			for (int i = 0; i < resultPrices.size() - 2; i++) {
+				try {
+				if (Integer.parseInt(resultPrices.get(i).getText()) > Integer.parseInt(resultPrices.get(i+1).getText()))
+					return false;
+				}
+				catch (NumberFormatException e){}
+			}
+		}
+		return true;
+	}
 }
