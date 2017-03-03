@@ -13,12 +13,12 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import commons.TestBase;
+import commons.BaseTest;
 
 
 public class Screenshot {
 	
-	private static Logger logger = LoggerFactory.getLogger(TestBase.class);
+	private static Logger logger = LoggerFactory.getLogger(BaseTest.class);
 	private static String folderName = "screenshots/";
 	
 	public static void takeScreenshot(WebDriver driver, String screenshotName) {

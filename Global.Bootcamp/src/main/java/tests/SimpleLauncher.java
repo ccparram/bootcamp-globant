@@ -1,11 +1,12 @@
 package tests;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import commons.TestBase;
+import commons.BaseTest;
 
-public class SimpleLauncher extends TestBase {
+public class SimpleLauncher extends BaseTest {
 	
 	@Parameters ({"browser", "url"})
 	public SimpleLauncher(String browser, String url){
@@ -16,4 +17,11 @@ public class SimpleLauncher extends TestBase {
 	public void launcher(){
 		
 	}
+
+	@BeforeClass
+	@Override
+	protected void setupPages() {
+	}
+
+
 }

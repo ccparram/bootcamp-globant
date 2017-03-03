@@ -14,22 +14,29 @@ public class MyWait {
 		 wait = new WebDriverWait(driver, waitTime);
 	}
 	
-	public static void elementToBeVisible(WebElement webElement){
+	public void elementToBeVisible(WebElement webElement){
 		wait.until(ExpectedConditions.visibilityOf(webElement));
 	}
 	
-	public static void elementToBeClickable(WebElement webElement){
+	public void elementToBeClickable(WebElement webElement){
 		wait.until(ExpectedConditions.elementToBeClickable(webElement));
 	}
 	
-	public static void cickAndWaitForElementToBeVisible(WebElement webElementClick, WebElement webElementWait){
+	
+	public void elementToBeClickableAndClick(WebElement webElement){
+		elementToBeClickable(webElement);
+		webElement.click();
+	}
+	
+	public void cickAndWaitForElementToBeVisible(WebElement webElementClick, WebElement webElementWait){
 		webElementClick.click();
 		elementToBeVisible(webElementWait);
 	}
 	
-	public static void cickAndWaitForElementToBeClickable(WebElement webElementClick, WebElement webElementWait){
+	public void cickAndWaitForElementToBeClickableAndClick(WebElement webElementClick, WebElement webElementWaited){
 		webElementClick.click();
-		elementToBeClickable(webElementWait);
+		elementToBeClickable(webElementWaited);
+		webElementWaited.click();
 	}
 
 }

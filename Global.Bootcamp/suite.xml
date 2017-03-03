@@ -5,10 +5,11 @@
 <suite name="TestSuite" thread-count="3" >
 	<test name="LaunchDriver">
 		<parameter name="browser" value="CHROME" />
-		<parameter name="url" value="https://google.com" />
-
+		<parameter name="url" value="https://amazon.com" />
+		<parameter name="game" value="Residen Evil 7" />
+		
 		<classes>
-			<class name="tests.SimpleLauncher"></class>
+			<class name="tests.SearchGameTest"></class>
 		</classes>
 	</test>
 </suite>
