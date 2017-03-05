@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import commons.BasePage;
+import static commons.helpers.WorkWithWebElement.*;
 
 public class AmazonResultsPage extends BasePage {
 	
@@ -53,7 +54,7 @@ public class AmazonResultsPage extends BasePage {
 	
 	private WebElement getInResultsProductTitle(String keyword){
 		for (WebElement webElement : results) {
-			if(webElement.getText().contains(keyword))
+			if(containsThisString(webElement, keyword))
 				return webElement;
 		}
 		return null;
